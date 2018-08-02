@@ -62,16 +62,10 @@ function SWEP:SetupDataTables()
 
 end
 
-function SWEP:Initialize()
-	if CLIENT then
-		if self.Owner == LocalPlayer() then
-			local vm = LocalPlayer():GetViewModel()
-			print(self:GetPerk())
-			local mat = nzPerks:Get(self:GetPerk()).material --perk_materials[self:GetPerk()]
-			oldmat = vm:GetMaterial() or ""
-			vm:SetMaterial(mat)
-		end
-	end
+function SWEP:PreDrawViewModel(vm, wep, ply)
+	local mat = nzPerks:Get(self:GetPerk()).material
+	oldmat = vm:GetMaterial() or ""
+	vm:SetMaterial(mat)
 end
 
 function SWEP:Equip( owner )
